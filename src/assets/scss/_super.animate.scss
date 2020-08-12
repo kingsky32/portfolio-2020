@@ -1,0 +1,4 @@
+@mixin ease-out($sec) {
+  transition-duration: $sec;
+  transition-timing-function: ease-out, cubic-bezier(.82, .1, .14, 1.12);
+}

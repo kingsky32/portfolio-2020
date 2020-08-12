@@ -1,0 +1,32 @@
+@function _buildIcon($icon) {
+    $icon: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24">#{$icon}</svg>';
+    @return $icon;
+  }
+
+  @function icon(
+    $icon-name,
+    $color,
+    $stroke-color: transparent,
+    $stroke-width: 0,
+    $css: '' // arbitrary css
+    ){
+    $icons: (
+      home: '<path fill="#{$color}" stroke="#{$stroke-color}" stroke-width="#{$stroke-width}" style="#{$css}" d="M10 20v-6h4v6h5v-8h3l-10-9-10 9h3v8z"/>',
+      heart: '<path fill="#{$color}" stroke="#{$stroke-color}" stroke-width="#{$stroke-width}" style="#{$css}" d="M12 21.35l- ... 1.45 1.31z"/>',
+  );
+    $icon: _buildIcon(map-get($icons, $icon-name));
+    @return url('data:image/svg+xml;utf8,#{$icon}');
+  }
+
+  @mixin icon($width, $height) {
+      display: inline-block;
+      font-size: 0;
+      width: $width;
+      height: $height;
+      margin: 0 auto;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+  }
+
+  .icon-moon {background-image: icon(home, $color--light); @include icon(24px, 24px);}
